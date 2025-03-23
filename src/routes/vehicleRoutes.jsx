@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import Layout from '../components/dashboard/Layout';
-import Vehicles from '../pages/Vehicles';
-import VehicleDetails from '../pages/VehicleDetails';
+import Vehicles from '../components/pages/Vehicles';
+import VehicleDetails from '../components/vehicles/VehicleDetails';
 
 const vehicleRoutes = [
   {

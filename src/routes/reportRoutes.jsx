@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import Layout from '../components/dashboard/Layout';
-import Reports from '../pages/Reports';
+import Reports from '../components/pages/Reports';
 import RevenueReport from '../components/reports/RevenueReport';
 import UtilizationReport from '../components/reports/UtilizationReport';
 import BookingTrends from '../components/reports/BookingTrends';

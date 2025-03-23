@@ -1,5 +1,5 @@
 import React from 'react';
-import DashboardLayout from '@/components/dashboard/DashboardLayout';
+import DashboardLayout from '../dashboard/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';

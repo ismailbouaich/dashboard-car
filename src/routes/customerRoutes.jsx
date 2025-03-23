@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import Layout from '../components/dashboard/Layout';
-import Customers from '../pages/Customers';
-import CustomerDetails from '../pages/CustomerDetails';
+import Customers from '../components/pages/Customers';
+import CustomerDetails from '../components/customers/CustomerDetails';
 
 const customerRoutes = [
   {

@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import Layout from '../components/dashboard/Layout';
-import Bookings from '../pages/Bookings';
-import BookingDetails from '../pages/BookingDetails';
+import Bookings from '../components/pages/Bookings';
+import BookingDetails from '../components/bookings/BookingDetails';
 
 const bookingRoutes = [
   {

@@ -1,14 +1,14 @@
 import { Navigate } from 'react-router-dom';
 import Layout from '../components/dashboard/Layout';
-import DashboardHome from '../pages/DashboardHome';
-import Vehicles from '../pages/Vehicles';
-import VehicleDetails from '../pages/VehicleDetails';
-import Bookings from '../pages/Bookings';
-import BookingDetails from '../pages/BookingDetails';
-import Customers from '../pages/Customers';
-import CustomerDetails from '../pages/CustomerDetails';
-import Reports from '../pages/Reports';
-import Settings from '../pages/Settings';
+import DashboardHome from '../components/pages/DashboardHome';
+import Vehicles from '../components/pages/Vehicles';
+import VehicleDetails from '../components/vehicles/VehicleDetails';
+import Bookings from '../components/pages/Bookings';
+import BookingDetails from '../components/bookings/BookingDetails';
+import Customers from '../components/pages/Customers';
+import CustomerDetails from '../components/customers/CustomerDetails';
+import Reports from '../components/pages/Reports';
+import Settings from '../components/pages/Settings';
 
 const adminRoutes = [
   {
