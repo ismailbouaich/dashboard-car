@@ -19,17 +19,21 @@ const Login = () => {
     
     const email = e.target.email.value;
     const password = e.target.password.value;
-
+  
     if (!email || !password) {
       toast.error("Please enter both email and password");
       return;
     }
-
+  
     try {
       setIsLoggingIn(true);
       await login(email, password);
       toast.success("Login successful!");
-      navigate('/admin');
+      
+      // Add a short delay before navigation
+      setTimeout(() => {
+        navigate('/admin');
+      }, 500);
     } catch (error) {
       console.error('Login error:', error);
       toast.error(error.message || "Please check your credentials and try again");

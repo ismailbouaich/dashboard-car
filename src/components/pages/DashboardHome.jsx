@@ -1,18 +1,14 @@
-import React from 'react'
-import { SeedData } from '@/components/dashboard/SeedData';
+import { CarsTable } from '@/components/dashboard/SeedData';
 import { useDashboard } from '@/context/DashboardContext';
+import { Link } from 'react-router-dom';
 
-const DashboardHome = () => {
-    const { dashboardStats, isLoading } = useDashboard();
+export default function DashboardHome() {
+  const { dashboardStats, isLoading } = useDashboard();
   const hasData = Object.values(dashboardStats).some(value => value > 0);
   
-  if (isLoading) {
-    return <div className="animate-pulse">Loading dashboard data...</div>;
-  }
+ 
+ 
   
-  if (!hasData) {
-    return <SeedData />;
-  }
   return (
     <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
     <div className="grid auto-rows-min gap-4 md:grid-cols-3">
@@ -21,8 +17,11 @@ const DashboardHome = () => {
       <div className="aspect-video rounded-xl bg-muted/50" />
     </div>
     <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
-  </div>
-  )
+    <Link 
+  to="/admin/vehicles" 
+  onClick={() => console.log("Vehicles link clicked, navigating to /admin/vehicles")}
+>
+  Vehicles
+</Link>
+  </div>  );
 }
-
-export default DashboardHome
