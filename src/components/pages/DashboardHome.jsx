@@ -18,7 +18,7 @@ export default function DashboardHome() {
     </div>
     <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
     <Link 
-  to="/admin/vehicles" 
+  to="/vehicles" 
   onClick={() => console.log("Vehicles link clicked, navigating to /admin/vehicles")}
 >
   Vehicles

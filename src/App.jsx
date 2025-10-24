@@ -1,45 +1,17 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Bell, Search } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Separator } from "@/components/ui/separator"
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar"
-import SearchForm from "@/components/searchForm"
-import { useIsMobile } from '@/hooks/use-mobile';
-import DashboardLayout from "./components/dashboard/Layout";
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from '@/context/AuthContext';
 import { DashboardProvider } from '@/context/DashboardContext';
 import { Toaster } from "@/components/ui/sonner";
-import Login from '@/components/pages/Login';
-// Import route configurations
-import adminRoutes from './routes/adminRoutes';
-import vehicleRoutes from './routes/vehicleRoutes';
-import bookingRoutes from './routes/bookingRoutes';
-import customerRoutes from './routes/customerRoutes';
-import reportRoutes from './routes/reportRoutes';
 import CarLoading from "./components/CarLoading";
+import routes from './routes/routes';
 
 // Protected route component
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
   
-  // if (loading) {
-  //   return <CarLoading/>;
-  // }
+  if (loading) {
+    return <CarLoading />;
+  }
   
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
@@ -50,23 +22,40 @@ const ProtectedRoute = ({ children }) => {
 
 // App component without authentication check
 function AppContent() {
-  const isMobile = useIsMobile();
-
-  // Convert route config objects to Route components
+  // Render routes based on the routes configuration
   const renderRoutes = (routes) => {
     return routes.map((route) => {
+      // Handle public routes (like login)
+      if (route.public) {
+        return (
+          <Route 
+            key={route.path} 
+            path={route.path} 
+            element={route.element} 
+          />
+        );
+      }
+      
+      // Handle routes with children
       if (route.children) {
         return (
-          <Route key={route.path} path={route.path} element={
-            <ProtectedRoute>
-              {route.element}
-            </ProtectedRoute>
-          }>
+          <Route 
+            key={route.path} 
+            path={route.path} 
+            element={
+              route.path === '/' || route.path === '' ? (
+                <ProtectedRoute>
+                  {route.element}
+                </ProtectedRoute>
+              ) : route.element
+            }
+          >
             {renderRoutes(route.children)}
           </Route>
         );
       }
       
+      // Handle regular protected routes
       return (
         <Route 
           key={route.path || 'index'} 
@@ -85,14 +74,7 @@ function AppContent() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        {renderRoutes(adminRoutes)}
-        {/* {renderRoutes(vehicleRoutes)}
-        {renderRoutes(bookingRoutes)}
-        {renderRoutes(customerRoutes)}
-        {renderRoutes(reportRoutes)} */}
-        <Route path="/" element={<Navigate to="/admin" replace />} />
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        {renderRoutes(routes)}
       </Routes>
       <Toaster position="top-right" />
     </Router>
